@@ -1,36 +1,89 @@
 
+
 const complaintForm = document.getElementById("complaintForm");
 
 if (complaintForm) {
 
+    const photoInput = document.getElementById("photo");
+    const photoPreview = document.getElementById("photoPreview");
+    const message = document.getElementById("message");
+
+    // Prévisualisation de la photo
+    photoInput.addEventListener("change", function() {
+
+        photoPreview.innerHTML = "";
+
+        const file = photoInput.files[0];
+
+        if (!file) return;
+
+        if (!file.type.startsWith("image/")) {
+            message.textContent = "Veuillez choisir un fichier image valide.";
+            message.style.color = "red";
+            photoInput.value = "";
+            return;
+        }
+
+        if (file.size > 5 * 1024 * 1024) {
+            message.textContent = "La taille de l'image ne doit pas dépasser 5 MB.";
+            message.style.color = "red";
+            photoInput.value = "";
+            return;
+        }
+
+        const image = document.createElement("img");
+        image.src = URL.createObjectURL(file);
+        image.alt = "Aperçu de la photo";
+        image.style.maxWidth = "200px";
+        image.style.marginTop = "10px";
+        image.style.borderRadius = "8px";
+
+        photoPreview.appendChild(image);
+
+        message.textContent = "";
+    });
+
+    // Gestion du formulaire
     complaintForm.addEventListener("submit", function(event) {
 
         event.preventDefault();
 
-        const title = document.getElementById("title").value;
+        const title = document.getElementById("title").value.trim();
         const category = document.getElementById("category").value;
-        const description = document.getElementById("description").value;
-        const location = document.getElementById("location").value;
+        const description = document.getElementById("description").value.trim();
+        const location = document.getElementById("location").value.trim();
 
-        const message = document.getElementById("message");
+        const file = photoInput.files[0];
 
         if (title === "" || category === "" ||
             description === "" || location === "") {
 
             message.textContent = "Veuillez remplir tous les champs obligatoires.";
             message.style.color = "red";
-
-        } else {
-
-            message.textContent = "Votre réclamation a été envoyée avec succès !";
-            message.style.color = "green";
-
-            complaintForm.reset();
+            return;
         }
 
+        if (file && !file.type.startsWith("image/")) {
+            message.textContent = "Veuillez choisir un fichier image valide.";
+            message.style.color = "red";
+            return;
+        }
+
+        if (file && file.size > 5 * 1024 * 1024) {
+            message.textContent = "La taille de l'image ne doit pas dépasser 5 MB.";
+            message.style.color = "red";
+            return;
+        }
+
+        message.textContent = "Votre réclamation a été envoyée avec succès !";
+        message.style.color = "green";
+
+        complaintForm.reset();
+        photoPreview.innerHTML = "";
     });
 
 }
+
  
 
 //code de register.html
@@ -55,8 +108,13 @@ if (registerForm) {
 
         if (name === "" || email === "" || password === "" || confirmPassword === "") {
 
-            message.textContent = "Veuillez remplir tous les champs obligatoires.";
-            message.style.color = "red";
+             message.textContent = "Veuillez remplir tous les champs obligatoires.";
+             message.style.color = "red";
+
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+
+             message.textContent = "Veuillez saisir une adresse e-mail valide.";
+             message.style.color = "red";
 
         } else if (password.length < 8) {
 
@@ -223,3 +281,36 @@ if (adminTable) {
     updateAdminStats();
 
 }
+   
+
+
+
+
+
+
+// Afficher ou masquer le mot de passe
+
+const passwordButtons = document.querySelectorAll(".toggle-password");
+
+passwordButtons.forEach(function(button) {
+
+    button.addEventListener("click", function() {
+
+        const inputId = button.dataset.target;
+        const passwordInput = document.getElementById(inputId);
+
+        if (passwordInput.type === "password") {
+
+            passwordInput.type = "text";
+            button.textContent = "👁️";
+
+        } else {
+
+            passwordInput.type = "password";
+            button.textContent = "🙈";
+
+        }
+
+    });
+
+});

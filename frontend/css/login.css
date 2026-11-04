@@ -236,3 +236,52 @@ footer {
         font-size: 26px;
     }
 }
+
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-container input {
+    width: 100%;
+    padding-right: 45px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px;
+}
+
+
+
+/* Correction du bouton afficher/masquer */
+
+.login-card .password-container .toggle-password {
+    position: absolute !important;
+    right: 10px !important;
+    top: calc(50% - 8px) !important;
+    transform: translateY(-50%) !important;
+
+    width: 35px !important;
+    height: 35px !important;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+
+    font-size: 18px;
+    cursor: pointer;
+}

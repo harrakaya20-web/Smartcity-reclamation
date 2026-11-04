@@ -46,14 +46,27 @@
                 <input type="tel" id="phone"
                        placeholder="Votre numéro de téléphone">
 
-                <label for="password">Mot de passe</label>
-                <input type="password" id="password"
-                       placeholder="Créer un mot de passe" required>
+                 <label for="password">Mot de passe</label>
 
-                <label for="confirmPassword">Confirmer le mot de passe</label>
-                <input type="password" id="confirmPassword"
-                       placeholder="Confirmer le mot de passe" required>
+<div class="password-container">
+    <input type="password" id="password"
+           placeholder="Créer un mot de passe" required>
 
+    <button type="button" class="toggle-password" data-target="password">
+        👁️
+    </button>
+</div>
+
+<label for="confirmPassword">Confirmer le mot de passe</label>
+
+<div class="password-container">
+    <input type="password" id="confirmPassword"
+           placeholder="Confirmer le mot de passe" required>
+
+    <button type="button" class="toggle-password" data-target="confirmPassword">
+        👁️
+    </button>
+</div>
                 <button type="submit">Créer mon compte →</button>
             </form>
         </div>
