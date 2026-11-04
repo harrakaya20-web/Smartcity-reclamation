@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes réclamations - SmartCity</title>
+    <link rel="stylesheet" href="css/mes-reclamations.css">
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">SmartCity<span>.</span></a>
+
+        <nav>
+            <a href="index.html">Accueil</a>
+            <a href="complaint.html">Déposer une réclamation</a>
+            <a href="mes-reclamations.html" class="active">Mes réclamations</a>
+            <a href="login.html">Déconnexion</a>
+        </nav>
+    </header>
+
+    <main class="dashboard">
+
+        <div class="page-heading">
+            <div>
+                <span class="eyebrow">ESPACE CITOYEN</span>
+                <h1>Mes réclamations</h1>
+                <p>Consultez et suivez l'état de vos réclamations.</p>
+            </div>
+        </div>
+
+        <div class="stats">
+
+            <div class="stat-card">
+                <div class="stat-icon blue">📋</div>
+                <h3 id="totalComplaints">0</h3>
+                <p>Total des réclamations</p>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon orange">⏳</div>
+                <h3 id="pendingCount">0</h3>
+                <p>En attente</p>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon cyan">🔄</div>
+                <h3 id="progressCount">0</h3>
+                <p>En cours</p>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon green">✓</div>
+                <h3 id="resolvedCount">0</h3>
+                <p>Résolues</p>
+            </div>
+
+        </div>
+
+        <section class="complaints-list">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Liste de mes réclamations</h2>
+                    <p>Retrouvez ici le suivi de vos signalements.</p>
+                </div>
+                <span class="list-icon">📄</span>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Titre</th>
+                            <th>Catégorie</th>
+                            <th>Date</th>
+                            <th>Statut</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Route endommagée</td>
+                            <td>Routes</td>
+                            <td>03/11/2026</td>
+                            <td>
+                                <span class="status pending">En attente</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Problème d'éclairage</td>
+                            <td>Éclairage</td>
+                            <td>02/11/2026</td>
+                            <td>
+                                <span class="status progress">En cours</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Nettoyage du quartier</td>
+                            <td>Propreté</td>
+                            <td>01/11/2026</td>
+                            <td>
+                                <span class="status resolved">Résolue</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+
+        <a href="complaint.html" class="btn">
+            + Nouvelle réclamation
+        </a>
+
+    </main>
+
+    <footer>
+        © 2026 SmartCity - Réclamations citoyennes
+    </footer>
+  <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+
+/* Réinitialisation */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Page */
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #333;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 55px;
+    background: white;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+header h2 {
+    color: #1769aa;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #444;
+    font-size: 15px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #1769aa;
+}
+
+/* Dashboard */
+.admin-container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.admin-container h1 {
+    color: #173f67;
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+.admin-container > p {
+    color: #777;
+    font-size: 16px;
+    margin-bottom: 35px;
+}
+
+/* Statistics */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 13px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.09);
+}
+
+.stat-card h3 {
+    color: #1769aa;
+    font-size: 34px;
+    margin-bottom: 12px;
+}
+
+.stat-card p {
+    color: #666;
+    font-size: 15px;
+}
+
+/* Complaints Table */
+.complaints-list {
+    background: white;
+    padding: 30px;
+    border-radius: 13px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.complaints-list h2 {
+    color: #1769aa;
+    font-size: 23px;
+    margin-bottom: 25px;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    min-width: 750px;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 18px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+th {
+    background: #f1f6fb;
+    color: #244c70;
+    font-weight: bold;
+}
+
+tbody tr {
+    transition: background 0.2s;
+}
+
+tbody tr:hover {
+    background: #f7faff;
+}
+
+/* Status Select */
+td select {
+    padding: 9px 12px;
+    border: 1px solid #d5dce5;
+    border-radius: 7px;
+    background: #f8fafc;
+    color: #333;
+    cursor: pointer;
+    outline: none;
+}
+
+td select:focus {
+    border-color: #1769aa;
+}
+
+/* Responsive */
+@media (max-width: 850px) {
+    header {
+        padding: 20px 25px;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .admin-container {
+        margin: 25px auto;
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        gap: 18px;
+        padding: 20px;
+    }
+
+    nav {
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .admin-container h1 {
+        font-size: 24px;
+    }
+
+    .complaints-list {
+        padding: 18px;
+    }
+}
+
+@media (max-width: 400px) {
+    .stats {
+        grid-template-columns: 1fr;
+    }
+}

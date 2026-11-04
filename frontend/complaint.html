@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réclamation - SmartCity</title>
+    <link rel="stylesheet" href="css/complaint.css">
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">SmartCity<span>.</span></a>
+
+        <nav>
+            <a href="index.html">Accueil</a>
+            <a href="mes-reclamations.html">Mes réclamations</a>
+            <a href="login.html">Connexion</a>
+            <a href="register.html" class="nav-btn">Inscription</a>
+        </nav>
+    </header>
+
+    <main class="complaint-page">
+
+        <div class="complaint-card">
+
+            <div class="complaint-icon">📢</div>
+
+            <h1>Déposer une réclamation</h1>
+            <p class="subtitle">
+                Signalez un problème dans votre quartier et participez
+                à l'amélioration de votre ville.
+            </p>
+
+            <div id="message"></div>
+
+            <form id="complaintForm">
+
+                <label for="title">Titre de la réclamation</label>
+                <input type="text" id="title" name="title"
+                       placeholder="Exemple : Route endommagée" required>
+
+                <label for="category">Catégorie</label>
+                <select id="category" name="category" required>
+                    <option value="">Choisir une catégorie</option>
+                    <option value="route">Routes</option>
+                    <option value="eclairage">Éclairage public</option>
+                    <option value="proprete">Propreté</option>
+                    <option value="autre">Autre</option>
+                </select>
+
+                <label for="description">Description</label>
+                <textarea id="description" name="description" rows="5"
+                          placeholder="Décrivez le problème..." required></textarea>
+
+                <label for="location">Lieu du problème</label>
+                <input type="text" id="location" name="location"
+                       placeholder="Exemple : Quartier..." required>
+
+                <label for="photo">Ajouter une photo (facultatif)</label>
+                <input type="file" id="photo" name="photo" accept="image/*">
+
+                <button type="submit">Envoyer la réclamation →</button>
+
+            </form>
+
+            <a href="index.html" class="back-link">
+                ← Retour à l'accueil
+            </a>
+
+        </div>
+
+    </main>
+
+    <footer>
+        © 2026 SmartCity - Réclamations citoyennes
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,251 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #eaf4ff, #f5f8fc, #e5f4f3);
+    color: #26364a;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* HEADER */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 7%;
+    background: white;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: bold;
+    color: #1769aa;
+    text-decoration: none;
+}
+
+.logo span {
+    color: #35b6a0;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #435267;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #1769aa;
+}
+
+nav .nav-btn {
+    background: #1769aa;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+}
+
+nav .nav-btn:hover {
+    background: #0d4778;
+    color: white;
+}
+
+/* PAGE */
+
+.complaint-page {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 45px 20px;
+}
+
+/* CARD */
+
+.complaint-card {
+    width: 100%;
+    max-width: 650px;
+    padding: 38px 42px;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 10px 35px rgba(23, 105, 170, 0.10);
+    text-align: center;
+}
+
+/* ICON */
+
+.complaint-icon {
+    width: 65px;
+    height: 65px;
+    background: #eaf4ff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    margin: 0 auto 18px;
+}
+
+/* TITLES */
+
+.complaint-card h1 {
+    color: #183c60;
+    font-size: 29px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #718096;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 28px;
+}
+
+/* FORM */
+
+.complaint-card form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.complaint-card label {
+    color: #34465c;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 9px;
+}
+
+.complaint-card input,
+.complaint-card select,
+.complaint-card textarea {
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 20px;
+    border: 1px solid #dce5ef;
+    border-radius: 9px;
+    outline: none;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    background: white;
+    transition: 0.3s;
+}
+
+.complaint-card textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.complaint-card input:focus,
+.complaint-card select:focus,
+.complaint-card textarea:focus {
+    border-color: #1769aa;
+    box-shadow: 0 0 0 3px rgba(23, 105, 170, 0.10);
+}
+
+.complaint-card input::placeholder,
+.complaint-card textarea::placeholder {
+    color: #a0aaba;
+}
+
+/* FILE INPUT */
+
+.complaint-card input[type="file"] {
+    padding: 10px;
+    background: #f8fafc;
+}
+
+/* BUTTON */
+
+.complaint-card button {
+    width: 100%;
+    padding: 15px;
+    background: #1769aa;
+    color: white;
+    border: none;
+    border-radius: 9px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.complaint-card button:hover {
+    background: #0d4778;
+    transform: translateY(-2px);
+}
+
+/* MESSAGE */
+
+#message {
+    margin-bottom: 15px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* BACK LINK */
+
+.back-link {
+    display: inline-block;
+    margin-top: 22px;
+    color: #718096;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.back-link:hover {
+    color: #1769aa;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: white;
+    color: #718096;
+    font-size: 13px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+    header {
+        padding: 18px 20px;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 13px;
+    }
+
+    nav a {
+        font-size: 12px;
+    }
+
+    .complaint-card {
+        padding: 28px 22px;
+    }
+
+    .complaint-card h1 {
+        font-size: 24px;
+    }
+}
