@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration - SmartCity</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+    <header>
+        <h2>SmartCity Admin</h2>
+
+        <nav>
+            <a href="index.html">Accueil</a>
+            <a href="mes-reclamations.html">Mes réclamations</a>
+            <a href="login.html">Déconnexion</a>
+        </nav>
+    </header>
+
+    <main class="admin-container">
+
+        <h1>Tableau de bord Administrateur</h1>
+        <p>Gestion et suivi des réclamations citoyennes.</p>
+
+        <section class="stats">
+
+            <div class="stat-card">
+                <h3 id="adminTotal">3</h3>
+                <p>Total des réclamations</p>
+            </div>
+
+            <div class="stat-card">
+                <h3 id="adminPending">1</h3>
+                <p>En attente</p>
+            </div>
+
+            <div class="stat-card">
+               <h3 id="adminProgress">1</h3>
+                <p>En cours</p>
+            </div>
+
+            <div class="stat-card">
+                <h3 id="adminResolved">1</h3>
+                <p>Résolues</p>
+            </div>
+
+        </section>
+
+        <section class="complaints-list">
+
+            <h2>Toutes les réclamations</h2>
+            <p id="adminMessage"></p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Citoyen</th>
+                            <th>Titre</th>
+                            <th>Catégorie</th>
+                            <th>Lieu</th>
+                            <th>Date</th>
+                            <th>Statut</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Ahmed</td>
+                            <td>Route endommagée</td>
+                            <td>Routes</td>
+                            <td>Centre-ville</td>
+                            <td>03/11/2026</td>
+                            <td>
+                                <select>
+                                    <option>En attente</option>
+                                    <option>En cours</option>
+                                    <option>Résolue</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Salma</td>
+                            <td>Problème d'éclairage</td>
+                            <td>Éclairage</td>
+                            <td>Quartier Al Amal</td>
+                            <td>02/11/2026</td>
+                            <td>
+                                <select>
+                                    <option>En attente</option>
+                                    <option selected>En cours</option>
+                                    <option>Résolue</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Youssef</td>
+                            <td>Nettoyage du quartier</td>
+                            <td>Propreté</td>
+                            <td>Hay Salam</td>
+                            <td>01/11/2026</td>
+                            <td>
+                                <select>
+                                    <option>En attente</option>
+                                    <option>En cours</option>
+                                    <option selected>Résolue</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+
+    </main>
+     <script src="js/script.js"></script>
+</body>
+</html>
