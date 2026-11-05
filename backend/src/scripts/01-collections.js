@@ -30,7 +30,7 @@ if (!smartcity.getCollectionNames().includes("complaints")) {
           citizenId: { bsonType: "objectId" },
           titre: { bsonType: "string", minLength: 5 },
           description: { bsonType: "string" },
-          categorie: { enum: ["voirie", "eclairage", "proprete", "autre"] },
+          categorie: { enum: ["route", "eclairage", "proprete", "autre"] },
           statut: { enum: ["en_attente", "en_cours", "resolue"] },
           location: {
             bsonType: "object",
