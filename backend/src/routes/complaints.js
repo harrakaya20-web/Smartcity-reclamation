@@ -5,6 +5,7 @@ const { authRequired, requireRole } = require("../middlewares/auth");
 
 const { limiter } = require("../middlewares/rateLimit");
 const limiteDepots = limiter(parseInt(process.env.RATE_LIMIT_MAX || "5", 10), 3600);
+const { deposerAvecIncident, insererSimple } = require("../services/incidents");
 const router = express.Router();
 router.use(authRequired); // toutes les routes ci-dessous exigent une connexion
 
@@ -102,9 +103,9 @@ router.post("/", limiteDepots, async (req, res) => {
       resolvedAt: null
     };
 
-    const r = await getDB().collection("complaints").insertOne(doc);
-    doc._id = r.insertedId;
-    res.status(201).json(formater(doc));
+    const incidentInfo = approximative ? await insererSimple(doc) : await deposerAvecIncident(doc);
+    
+    res.status(201).json(Object.assign(formater(doc), { incidentId: doc.incidentId || null, incident: incidentInfo }));
   } catch (err) {
     console.error(err);
     res.status(500).json({ erreur: "Erreur serveur" });
