@@ -12,6 +12,11 @@ const complaintRoutes = require("./src/routes/complaints");
 app.use("/api/complaints", complaintRoutes);
 const statsRoutes = require("./src/routes/stats");
 app.use("/api/stats", statsRoutes);
+const incidentRoutes = require("./src/routes/incidents");
+app.use("/api/incidents", incidentRoutes);
+const notificationRoutes = require("./src/routes/notifications");
+app.use("/api/notifications", notificationRoutes);
+const { demarrerNotifications } = require("./src/services/notifications");
 
 // Route de test : prouve que le serveur et MongoDB communiquent
 app.get("/api/health", async (req, res) => {
@@ -29,6 +34,7 @@ const PORT = process.env.PORT || 5000;
 connectDB()
   .then(() => {
     app.listen(PORT, () => console.log("Serveur démarré sur http://localhost:" + PORT));
+    demarrerNotifications();
   })
   .catch((err) => {
     console.error("Connexion MongoDB impossible : " + err.message);
