@@ -10,6 +10,8 @@ const authRoutes = require("./src/routes/auth");
 app.use("/api/auth", authRoutes);
 const complaintRoutes = require("./src/routes/complaints");
 app.use("/api/complaints", complaintRoutes);
+const statsRoutes = require("./src/routes/stats");
+app.use("/api/stats", statsRoutes);
 
 // Route de test : prouve que le serveur et MongoDB communiquent
 app.get("/api/health", async (req, res) => {

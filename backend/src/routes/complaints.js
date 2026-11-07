@@ -3,6 +3,8 @@ const { ObjectId } = require("mongodb");
 const { getDB } = require("../config/db");
 const { authRequired, requireRole } = require("../middlewares/auth");
 
+const { limiter } = require("../middlewares/rateLimit");
+const limiteDepots = limiter(parseInt(process.env.RATE_LIMIT_MAX || "5", 10), 3600);
 const router = express.Router();
 router.use(authRequired); // toutes les routes ci-dessous exigent une connexion
 
@@ -54,7 +56,7 @@ function filtreValide(valeur, autorises) {
 }
 
 // POST /api/complaints : déposer une réclamation
-router.post("/", async (req, res) => {
+router.post("/", limiteDepots, async (req, res) => {
   try {
     const { title, category, description, location, latitude, longitude } = req.body || {};
 
