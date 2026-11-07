@@ -206,4 +206,42 @@ router.delete("/:id", requireRole("admin"), async (req, res) => {
   }
 });
 
+const redis = require("../config/redis");
+
+// POST /api/complaints/:id/evaluation : le citoyen note la réponse reçue (une seule fois)
+router.post("/:id/evaluation", async (req, res) => {
+  try {
+    if (!ObjectId.isValid(req.params.id)) return res.status(400).json({ erreur: "Identifiant invalide" });
+    const { rating, comment } = req.body || {};
+    if (!Number.isInteger(rating) || rating < 1 || rating > 5)
+      return res.status(400).json({ erreur: "La note doit être un entier de 1 à 5" });
+    if (comment !== undefined && (typeof comment !== "string" || comment.length > 500))
+      return res.status(400).json({ erreur: "Commentaire invalide (500 caractères maximum)" });
+
+    const id = new ObjectId(req.params.id);
+    const citizenId = new ObjectId(req.user.id);
+    const col = getDB().collection("complaints");
+
+    // Une seule opération atomique : bonne personne, réclamation résolue, pas encore évaluée
+    const r = await col.updateOne(
+      { _id: id, citizenId: citizenId, statut: "resolue", evaluation: null },
+      { $set: { evaluation: { note: rating, commentaire: (comment || "").trim(), date: new Date() } } }
+    );
+    if (r.modifiedCount === 1) {
+      try { await redis.del("dashboard:stats"); } catch (e) { /* cache facultatif */ }
+      return res.json(formater(await col.findOne({ _id: id })));
+    }
+
+    // Aucune modification : on explique pourquoi
+    const c = await col.findOne({ _id: id, citizenId: citizenId }, { projection: { statut: 1 } });
+    if (!c) return res.status(404).json({ erreur: "Réclamation introuvable" });
+    if (c.statut !== "resolue")
+      return res.status(409).json({ erreur: "Vous pourrez évaluer quand la réclamation sera résolue" });
+    return res.status(409).json({ erreur: "Cette réclamation a déjà été évaluée" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ erreur: "Erreur serveur" });
+  }
+});
+
 module.exports = router;
