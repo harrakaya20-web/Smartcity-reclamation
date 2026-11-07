@@ -8,6 +8,8 @@ app.use(cors());
 app.use(express.json());
 const authRoutes = require("./src/routes/auth");
 app.use("/api/auth", authRoutes);
+const complaintRoutes = require("./src/routes/complaints");
+app.use("/api/complaints", complaintRoutes);
 
 // Route de test : prouve que le serveur et MongoDB communiquent
 app.get("/api/health", async (req, res) => {
