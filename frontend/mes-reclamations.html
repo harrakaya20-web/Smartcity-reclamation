@@ -16,7 +16,7 @@
             <a href="index.html">Accueil</a>
             <a href="complaint.html">Déposer une réclamation</a>
             <a href="mes-reclamations.html" class="active">Mes réclamations</a>
-            <a href="login.html">Déconnexion</a>
+            <a href="login.html" id="logoutLink">Déconnexion</a>
         </nav>
     </header>
 
@@ -30,6 +30,7 @@
             </div>
         </div>
 
+        <!-- Statistiques -->
         <div class="stats">
 
             <div class="stat-card">
@@ -58,6 +59,7 @@
 
         </div>
 
+        <!-- Liste des réclamations -->
         <section class="complaints-list">
 
             <div class="section-heading">
@@ -65,8 +67,11 @@
                     <h2>Liste de mes réclamations</h2>
                     <p>Retrouvez ici le suivi de vos signalements.</p>
                 </div>
+
                 <span class="list-icon">📄</span>
             </div>
+
+            <div id="complaintsMessage"></div>
 
             <div class="table-container">
                 <table>
@@ -79,32 +84,9 @@
                         </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody id="complaintsTableBody">
                         <tr>
-                            <td>Route endommagée</td>
-                            <td>Routes</td>
-                            <td>03/11/2026</td>
-                            <td>
-                                <span class="status pending">En attente</span>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>Problème d'éclairage</td>
-                            <td>Éclairage</td>
-                            <td>02/11/2026</td>
-                            <td>
-                                <span class="status progress">En cours</span>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>Nettoyage du quartier</td>
-                            <td>Propreté</td>
-                            <td>01/11/2026</td>
-                            <td>
-                                <span class="status resolved">Résolue</span>
-                            </td>
+                            <td colspan="4">Chargement des réclamations...</td>
                         </tr>
                     </tbody>
                 </table>
@@ -121,6 +103,8 @@
     <footer>
         © 2026 SmartCity - Réclamations citoyennes
     </footer>
-  <script src="js/script.js"></script>
+
+    <script src="js/script.js"></script>
+
 </body>
 </html>
