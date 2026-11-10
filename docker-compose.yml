@@ -7,10 +7,12 @@ services:
       - "27017:27017"
     volumes:
       - mongo_data:/data/db
+    restart: unless-stopped
   redis:
     image: redis:7
     container_name: smartcity-redis
     ports:
       - "6379:6379"
+    restart: unless-stopped
 volumes:
   mongo_data:

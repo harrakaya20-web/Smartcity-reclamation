@@ -56,7 +56,11 @@
                 <label for="location">Lieu du problème</label>
                 <input type="text" id="location" name="location"
                        placeholder="Exemple : Quartier..." required>
+                <button type="button" id="getLocation">
+    📍 Détecter ma position GPS
+                </button>
 
+                <p id="gpsStatus">Position GPS non détectée.</p>
                 <label for="photo">Ajouter une photo (facultatif)</label>
                 <input type="file" id="photo" name="photo" accept="image/*">
 
