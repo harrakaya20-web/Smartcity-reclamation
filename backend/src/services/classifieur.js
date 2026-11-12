@@ -15,7 +15,12 @@ function normaliser(texte) {
 }
 
 function chargerExemples() {
-  return JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "entrainement.json"), "utf8"));
+  const dossier = path.join(__dirname, "..", "data");
+  let exemples = [];
+  fs.readdirSync(dossier).filter(function (n) { return /^entrainement.*\.json$/.test(n); }).forEach(function (n) {
+    exemples = exemples.concat(JSON.parse(fs.readFileSync(path.join(dossier, n), "utf8")));
+  });
+  return exemples;
 }
 
 // Apprentissage : on compte les mots de chaque catégorie

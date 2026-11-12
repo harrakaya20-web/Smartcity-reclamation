@@ -6,6 +6,7 @@ const { authRequired, requireRole } = require("../middlewares/auth");
 const { limiter } = require("../middlewares/rateLimit");
 const limiteDepots = limiter(parseInt(process.env.RATE_LIMIT_MAX || "5", 10), 3600);
 const { deposerAvecIncident, insererSimple } = require("../services/incidents");
+const { classer } = require("../services/classifieur");
 const router = express.Router();
 router.use(authRequired); // toutes les routes ci-dessous exigent une connexion
 
@@ -41,7 +42,8 @@ function formater(c) {
     createdAt: c.createdAt,
     resolvedAt: c.resolvedAt || null,
     history: c.historique || [],
-    evaluation: c.evaluation || null
+    evaluation: c.evaluation || null,
+    ai: c.classificationIA || null
   };
 }
 
@@ -84,17 +86,34 @@ router.post("/", limiteDepots, async (req, res) => {
     }
 
     const maintenant = new Date();
+    let analyse = { categorie: category, confiance: 0 };
+    try { analyse = classer(title + " " + description); }
+    catch (e) { console.error("Classifieur indisponible : " + e.message); }
+    let categorieFinale = category;
+    let corrigee = false;
+    if (category === "autre" && analyse.categorie !== "autre" && analyse.confiance >= 0.85) {
+      categorieFinale = analyse.categorie;
+      corrigee = true;
+    }
+    const classificationIA = {
+      categorie: analyse.categorie,
+      confiance: analyse.confiance,
+      desaccord: analyse.categorie !== categorieFinale && analyse.confiance >= 0.7,
+      corrigee: corrigee,
+      categorieChoisie: category
+    };
     const doc = {
       citizenId: new ObjectId(req.user.id),
       titre: title.trim(),
       description: description.trim(),
-      categorie: category,
+      categorie: categorieFinale,
       photos: [],
       locationTexte: (location || "").trim(),
       location: { type: "Point", coordinates: coordonnees },
       localisationApproximative: approximative,
       quartier: "Non précisé",
-      urgence: estimerUrgence(title + " " + description, category),
+      urgence: estimerUrgence(title + " " + description, categorieFinale),
+      classificationIA: classificationIA,
       statut: "en_attente",
       nbSignalements: 1,
       historique: [{ statut: "en_attente", date: maintenant, par: "systeme" }],
